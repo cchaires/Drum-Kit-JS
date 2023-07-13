@@ -18,6 +18,7 @@ You can see the live demo of the project [here](https://cchaires.github.io/Drum-
 - HTML
 - CSS
 - JavaScript
+- jQuery
 
 ## Usage
 
