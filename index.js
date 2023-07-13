@@ -1,25 +1,25 @@
-const buttons = document.querySelectorAll('.drum');
+const buttons = $('.drum');
 
 // Function to play sound based on key press or button click
 function playSound(key) {
-  const button = document.querySelector('.' + key);
-  if (button) {
-    const soundSrc = button.dataset.sound;
+  const button = $('.' + key);
+  if (button.length > 0) {
+    const soundSrc = button.data('sound');
     new Audio(soundSrc).play();
   }
-  button.classList.add('pressed');
-  setTimeout(() => button.classList.remove('pressed'), 100);
+  button.addClass('pressed');
+  setTimeout(() => button.removeClass('pressed'), 100);
 }
 
 // Attach a click event listener to each button
-buttons.forEach(button =>
-  button.addEventListener('click', () => {
-    const soundSrc = button.dataset.sound;
+buttons.on('click', function() {
+    const soundSrc = $(this).data('sound');
     new Audio(soundSrc).play();
-    button.classList.add('pressed');
-    setTimeout(() => button.classList.remove('pressed'), 100);
-  })
-);
+    $(this).addClass('pressed');
+    setTimeout(() => $(this).removeClass('pressed'), 100);
+  });
 
 // Event listener for keydown event
-document.addEventListener('keydown', event => playSound(event.key));
+$(document).on('keydown', function (event) {
+  playSound(event.key);
+});
